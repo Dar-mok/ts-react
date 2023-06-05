@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Box from "./Box";
 import NewBoxForm from "./NewBoxForm";
-
-export interface BoxInt {
-  id: string,
-  width: number,
-  height: number,
-  backgroundColor: string
-}
+import { BoxInterface } from "./BoxInterface";
 
 /** Manage list of boxes
  *
@@ -16,17 +10,10 @@ export interface BoxInt {
  */
 
 function BoxList() {
-  const [boxes, setBoxes] = useState<BoxInt[] >([])
-
-  // interface BoxInt {
-  //   id: string,
-  //   width: number,
-  //   height: number,
-  //   backgroundColor: string
-  // }
+  const [boxes, setBoxes] = useState<BoxInterface[] >([])
 
   /** add box with given { id, width, height, backgroundColor } */
-  function add(newBox: BoxInt) {
+  function add(newBox: BoxInterface) {
     setBoxes(boxes => [...boxes, newBox]);
   }
 

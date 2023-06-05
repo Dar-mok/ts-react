@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { v4 as uuid } from 'uuid';
+import { BoxInterface } from "./BoxInterface";
 
 interface NewBoxFormProps {
-  createBox: (arg: BoxInt) => ReturnType;
+  createBox: (arg: BoxInterface) => void;
 }
+
+
 /** Form for adding box.
  *
  * Props:
@@ -16,14 +19,17 @@ interface NewBoxFormProps {
  */
 // (newBox: BoxInt): void      : ((BoxInt) => void)
 function NewBoxForm({ createBox }: NewBoxFormProps)  {
-  const [formData, setFormData] = useState({
-    height: "",
-    width: "",
+
+  const initialFormState = {
+    height: 0,
+    width: 0,
     backgroundColor: "",
-  });
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
 
   /** Update form input. */
-  function handleChange(evt) {
+  function handleChange(evt: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = evt.target;
     setFormData(formData => ({
       ...formData,
@@ -32,10 +38,10 @@ function NewBoxForm({ createBox }: NewBoxFormProps)  {
   }
 
   /** Submit form: call function from parent & clear inputs. */
-  function handleSubmit(evt) {
+  function handleSubmit(evt: React.FormEvent) {
     evt.preventDefault();
     createBox({ ...formData, id: uuid() });
-    setFormData({ height: "", width: "", backgroundColor: "" });
+    setFormData(initialFormState);
   }
 
   return (
@@ -47,6 +53,7 @@ function NewBoxForm({ createBox }: NewBoxFormProps)  {
                 id="newBox-height"
                 onChange={handleChange}
                 name="height"
+                type="number"
                 value={formData.height}
             />
           </div>
@@ -56,6 +63,7 @@ function NewBoxForm({ createBox }: NewBoxFormProps)  {
                 id="newBox-width"
                 onChange={handleChange}
                 name="width"
+                type="number"
                 value={formData.width}
             />
           </div>
