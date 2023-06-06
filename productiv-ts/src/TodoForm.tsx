@@ -1,6 +1,13 @@
 import React, { useState } from "react";
+import { TodoInterface } from "./TodoInterface";
+
 
 const defaultInitialFormData = { title: "", description: "", priority: 1 };
+
+interface TodoFormProps {
+  initialFormData,
+  handleSave: (arg0 TodoInterface) => void
+}
 
 /** Form for adding.
  *
@@ -11,7 +18,7 @@ const defaultInitialFormData = { title: "", description: "", priority: 1 };
  * { TodoApp, EditableTodo } -> TodoForm
  */
 
-function TodoForm({ initialFormData = defaultInitialFormData, handleSave }) {
+function TodoForm({ initialFormData = defaultInitialFormData, handleSave }: TodoFormProps) {
   const [formData, setFormData] = useState(initialFormData);
 
   /** Update form input. */

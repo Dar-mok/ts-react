@@ -20,7 +20,7 @@ function App() {
         </div>
       </header>
 
-      <section> 
+      <section>
         <QuoteApp/>
       </section>
 

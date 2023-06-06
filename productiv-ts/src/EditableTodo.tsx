@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Todo from "./Todo";
 import TodoForm from "./TodoForm";
+import { TodoInterface } from "./TodoInterface";
+
+interface EditableTodoProps {
+  todo: TodoInterface,
+  remove: (arg: string) => void,
+  update: (args: TodoInterface) => void
+}
 
 /** Show editable todo item.
  *
@@ -12,7 +19,7 @@ import TodoForm from "./TodoForm";
  * EditableTodoList -> EditableTodo -> { Todo, TodoForm }
  */
 
-function EditableTodo({ todo, remove, update }) {
+function EditableTodo({ todo, remove, update }: EditableTodoProps) {
   const [isEditing, setIsEditing] = useState(false);
 
   /** Toggle if this is being edited */
